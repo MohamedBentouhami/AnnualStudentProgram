@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Courses</title>
     <link rel="icon" th:href="@{/images/school.svg}" />
-    <link rel="stylesheet" th:href="@{/css/course.css}">
+    <link rel="stylesheet" th:href="@{/css/course.css}" />
   </head>
   <body>
     <header>
       <h1>List of courses</h1>
     </header>
     <main>
-      <table>
+      <h2 th:if="${#lists.isEmpty(courses)}">No courses</h2>
+      <table th:unless="${#lists.isEmpty(courses)}">
         <thead>
           <tr>
             <th>Sigle</th>
@@ -21,11 +22,11 @@
           </tr>
         </thead>
         <tbody>
-            <tr th:each="course :${courses}">
-                <td th:text="${course.sigle}"></td>
-                <td th:text="${course.title}"></td>
-                <td th:text="${course.etc}"></td>
-            </tr>
+          <tr th:each="course :${courses}">
+            <td th:text="${course.sigle}"></td>
+            <td th:text="${course.title}"></td>
+            <td th:text="${course.etc}"></td>
+          </tr>
         </tbody>
       </table>
     </main>
