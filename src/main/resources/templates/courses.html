@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}"
+>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,12 +11,11 @@
     <link rel="icon" th:href="@{/images/school.svg}" />
     <link rel="stylesheet" th:href="@{/css/course.css}" />
   </head>
-  <body>
-    <header></header>
+  <body layout:fragment="content">
     <main>
       <div class="courses-display">
         <div class="courses-list">
-          <h1 class="title">List of courses</h1>
+          <h1 class="s-title">List of courses</h1>
           <h2 th:if="${#lists.isEmpty(courses)}">No courses</h2>
           <table th:unless="${#lists.isEmpty(courses)}">
             <thead>
@@ -42,7 +45,7 @@
           </table>
         </div>
         <div class="course-form">
-          <h2 class="title">Add a course</h2>
+          <h2 class="s-title">Add a course</h2>
           <form
             th:action="@{/create-course}"
             th:object="${course}"
@@ -61,8 +64,12 @@
               th:field="*{title}"
             />
             <label for="">ETCS: </label>
-            <input type="number" placeholder="Enter the number of etc" th:field="*{etc}"/>
-            <button type="submit">Add</button>
+            <input
+              type="number"
+              placeholder="Enter the number of etc"
+              th:field="*{etc}"
+            />
+            <button type="submit" class="add-btn">Add</button>
           </form>
         </div>
       </div>

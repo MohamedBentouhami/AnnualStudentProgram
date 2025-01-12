@@ -26,6 +26,21 @@ a {
     width: 30%;
   }
 }
-.title {
+.s-title {
   color: #92140c;
 }
+
+.add-btn{
+    margin-top: 2em;
+    background-color: #92140c;
+    color: white;
+    border-radius: 15px;
+    padding: 1em;
+    width: 50%;
+    border-color: transparent;
+    &:hover{
+        background-color: black;
+        
+    }
+}
+
