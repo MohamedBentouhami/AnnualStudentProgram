@@ -1,7 +1,12 @@
-table{
-    border-radius: 30px;
-    background-color: antiquewhite;
-    thead{
-        background-color: #92140c;
-    }
+table {
+  border-radius: 30px;
+  background-color: antiquewhite;
+  thead {
+    background-color: #92140c;
+  }
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
 }

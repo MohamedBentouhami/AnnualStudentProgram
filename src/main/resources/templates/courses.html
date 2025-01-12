@@ -23,8 +23,18 @@
         </thead>
         <tbody>
           <tr th:each="course :${courses}">
-            <td th:text="${course.sigle}"></td>
-            <td th:text="${course.title}"></td>
+            <td>
+              <a
+                th:href="@{/courses/{course}(course = ${course.sigle})}"
+                th:text="${course.sigle}"
+              ></a>
+            </td>
+            <td>
+              <a
+                th:href="@{/courses/{course}(course = ${course.sigle})}"
+                th:text="${course.title}"
+              ></a>
+            </td>
             <td th:text="${course.etc}"></td>
           </tr>
         </tbody>
