@@ -1,0 +1,10 @@
+:root{
+    font-family: cursive, sans-serif;
+    background-color: #fff8f0;
+    color: black;
+}
+.title{
+    text-align: center;
+    color: #92140c;
+    text-shadow: 1px 1px black;
+}
