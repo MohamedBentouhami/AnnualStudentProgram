@@ -1,0 +1,7 @@
+table{
+    border-radius: 30px;
+    background-color: antiquewhite;
+    thead{
+        background-color: #92140c;
+    }
+}

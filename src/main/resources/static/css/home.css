@@ -1,10 +1,35 @@
-:root{
-    font-family: cursive, sans-serif;
-    background-color: #fff8f0;
-    color: black;
+:root {
+  font-family: cursive, sans-serif;
+  background-color: #fff8f0;
+  color: black;
 }
-.title{
-    text-align: center;
-    color: #92140c;
-    text-shadow: 1px 1px black;
+body {
+  margin: 0;
+}
+.title {
+  text-align: center;
+  color: #92140c;
+  text-shadow: 1px 1px black;
+}
+
+.menu {
+  background-color: #111d4a;
+  padding: 0.5em 0;
+  ul {
+    display: flex;
+    list-style: none;
+    li {
+      margin: 0 2em;
+      a {
+        color: white;
+        text-decoration: none;
+        padding: 5px 5px;
+        font-size: large;
+      }
+      a:hover {
+        background-color: #fff8f0;
+        color: black;
+      }
+    }
+  }
 }

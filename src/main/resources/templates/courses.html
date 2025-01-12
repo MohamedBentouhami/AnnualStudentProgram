@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Courses</title>
+    <link rel="icon" th:href="@{/images/school.svg}" />
+    <link rel="stylesheet" th:href="@{/css/course.css}">
+  </head>
+  <body>
+    <header>
+      <h1>List of courses</h1>
+    </header>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th>Sigle</th>
+            <th>Title</th>
+            <th>ECTS</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr th:each="course :${courses}">
+                <td th:text="${course.sigle}"></td>
+                <td th:text="${course.title}"></td>
+                <td th:text="${course.etc}"></td>
+            </tr>
+        </tbody>
+      </table>
+    </main>
+  </body>
+</html>
