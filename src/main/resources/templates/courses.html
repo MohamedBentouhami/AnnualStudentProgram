@@ -8,37 +8,64 @@
     <link rel="stylesheet" th:href="@{/css/course.css}" />
   </head>
   <body>
-    <header>
-      <h1>List of courses</h1>
-    </header>
+    <header></header>
     <main>
-      <h2 th:if="${#lists.isEmpty(courses)}">No courses</h2>
-      <table th:unless="${#lists.isEmpty(courses)}">
-        <thead>
-          <tr>
-            <th>Sigle</th>
-            <th>Title</th>
-            <th>ECTS</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="course :${courses}">
-            <td>
-              <a
-                th:href="@{/courses/{course}(course = ${course.sigle})}"
-                th:text="${course.sigle}"
-              ></a>
-            </td>
-            <td>
-              <a
-                th:href="@{/courses/{course}(course = ${course.sigle})}"
-                th:text="${course.title}"
-              ></a>
-            </td>
-            <td th:text="${course.etc}"></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="courses-display">
+        <div class="courses-list">
+          <h1 class="title">List of courses</h1>
+          <h2 th:if="${#lists.isEmpty(courses)}">No courses</h2>
+          <table th:unless="${#lists.isEmpty(courses)}">
+            <thead>
+              <tr>
+                <th>Sigle</th>
+                <th>Title</th>
+                <th>ECTS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="course :${courses}">
+                <td>
+                  <a
+                    th:href="@{/courses/{course}(course = ${course.sigle})}"
+                    th:text="${course.sigle}"
+                  ></a>
+                </td>
+                <td>
+                  <a
+                    th:href="@{/courses/{course}(course = ${course.sigle})}"
+                    th:text="${course.title}"
+                  ></a>
+                </td>
+                <td th:text="${course.etc}"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="course-form">
+          <h2 class="title">Add a course</h2>
+          <form
+            th:action="@{/create-course}"
+            th:object="${course}"
+            method="post"
+          >
+            <label for=""> Sigle : </label>
+            <input
+              type="text"
+              placeholder="Enter a course sigle"
+              th:field="*{sigle}"
+            />
+            <label for=""> Title : </label>
+            <input
+              type="text"
+              placeholder="Enter a course title"
+              th:field="*{title}"
+            />
+            <label for="">ETCS: </label>
+            <input type="number" placeholder="Enter the number of etc" th:field="*{etc}"/>
+            <button type="submit">Add</button>
+          </form>
+        </div>
+      </div>
     </main>
   </body>
 </html>
