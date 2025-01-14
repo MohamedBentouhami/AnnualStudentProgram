@@ -3,11 +3,11 @@ package com.example.asp.business;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.example.asp.model.Course;
 
-import lombok.Data;
-
-@Data
+@Service
 public class Asp {
 
     public List<Course> getCourses() {
