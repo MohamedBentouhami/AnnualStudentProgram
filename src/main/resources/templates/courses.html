@@ -57,18 +57,21 @@
               placeholder="Enter a course sigle"
               th:field="*{sigle}"
             />
+            <span th:errors="*{sigle}" class="errorMsg">erreur</span>
             <label for=""> Title : </label>
             <input
               type="text"
               placeholder="Enter a course title"
               th:field="*{title}"
             />
+            <span th:errors="*{title}" class="errorMsg">erreur</span>
             <label for="">ETCS: </label>
             <input
               type="number"
               placeholder="Enter the number of etc"
               th:field="*{etc}"
             />
+            <span th:errors="*{etc}" class="errorMsg">erreur</span>
             <button type="submit" class="add-btn">Add</button>
           </form>
         </div>
