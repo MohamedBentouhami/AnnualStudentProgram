@@ -40,6 +40,7 @@ public class CourseController {
             model.addAttribute("courses", business.getCourses());
             return "courses";
         }
+        business.addCourse(course);
         return "redirect:/courses";
     }
 }
