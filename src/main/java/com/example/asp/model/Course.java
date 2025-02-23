@@ -15,9 +15,9 @@ import lombok.NoArgsConstructor;
 public class Course {
 
     @Id
-    @NotBlank(message = "Can't be empty")
+    @NotBlank(message = "Cannot be empty")
     private String sigle;
-    @NotBlank(message = "Can't be empty")
+    @NotBlank(message = "Cannot be empty")
     private String title;
     @Min(value = 0, message = "should be positive")
     private int etc;

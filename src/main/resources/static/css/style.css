@@ -60,3 +60,12 @@
     }
   }
 }
+
+.table-render{
+  width: 50%;
+  thead th{
+      background-color: var(--secondary_color);
+      color: var(--primary_color);
+  }
+
+}

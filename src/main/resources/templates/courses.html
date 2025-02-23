@@ -1,81 +1,63 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="http://www.thymeleaf.org"
-  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{layout}"
->
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Courses</title>
-    <link rel="icon" th:href="@{/images/school.svg}" />
-    <link rel="stylesheet" th:href="@{/css/course.css}" />
-  </head>
-  <body layout:fragment="content">
-    <main>
-      <div class="courses-display">
-        <div class="courses-list">
-          <h1 class="s-title">List of courses</h1>
-          <h2 th:if="${#lists.isEmpty(courses)}">No courses</h2>
-          <table th:unless="${#lists.isEmpty(courses)}">
-            <thead>
-              <tr>
-                <th>Sigle</th>
-                <th>Title</th>
-                <th>ECTS</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr th:each="course :${courses}">
-                <td>
-                  <a
-                    th:href="@{/courses/{course}(course = ${course.sigle})}"
-                    th:text="${course.sigle}"
-                  ></a>
-                </td>
-                <td>
-                  <a
-                    th:href="@{/courses/{course}(course = ${course.sigle})}"
-                    th:text="${course.title}"
-                  ></a>
-                </td>
-                <td th:text="${course.etc}"></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="course-form">
-          <h2 class="s-title">Add a course</h2>
-          <form
-            th:action="@{/create-course}"
-            th:object="${course}"
-            method="post"
-          >
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Courses</title>
+  <link rel="icon" th:href="@{/images/school.svg}" />
+  <link rel="stylesheet" th:href="@{/css/course.css}" />
+</head>
+
+<body layout:fragment="content">
+  <main>
+    <div class="courses-page">
+      <h3 class="s-title">Courses</h3>
+      <h4 th:if="${#lists.isEmpty(courses)}">No courses</h4>
+      <table th:unless="${#lists.isEmpty(courses)}" class="table-render">
+        <thead>
+          <tr>
+            <th>Sigle</th>
+            <th>Title</th>
+            <th>ECTS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="course :${courses}">
+            <td>
+              <a th:href="@{/courses/{course}(course = ${course.sigle})}" th:text="${course.sigle}"></a>
+            </td>
+            <td>
+              <a th:href="@{/courses/{course}(course = ${course.sigle})}" th:text="${course.title}"></a>
+            </td>
+            <td th:text="${course.etc}"></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="course-form">
+        <h2 class="s-title">Add a course</h2>
+        <form th:action="@{/create-course}" th:object="${course}" method="post">
+          <div>
             <label for=""> Sigle : </label>
-            <input
-              type="text"
-              placeholder="Enter a course sigle"
-              th:field="*{sigle}"
-            />
+            <input type="text" placeholder="Enter a course sigle" th:field="*{sigle}" />
             <span th:errors="*{sigle}" class="errorMsg">erreur</span>
+          </div>
+          <div>
             <label for=""> Title : </label>
-            <input
-              type="text"
-              placeholder="Enter a course title"
-              th:field="*{title}"
-            />
+            <input type="text" placeholder="Enter a course title" th:field="*{title}" />
             <span th:errors="*{title}" class="errorMsg">erreur</span>
+          </div>
+          <div>
             <label for="">ETCS: </label>
-            <input
-              type="number"
-              placeholder="Enter the number of etc"
-              th:field="*{etc}"
-            />
+            <input type="number" placeholder="Enter the number of etc" th:field="*{etc}" min="1"/>
             <span th:errors="*{etc}" class="errorMsg">erreur</span>
-            <button type="submit" class="add-btn">Add</button>
-          </form>
-        </div>
+          </div>
+          <button type="submit" class="add-btn">Add</button>
+        </form>
       </div>
-    </main>
-  </body>
+    </div>
+  </main>
+</body>
+
 </html>
