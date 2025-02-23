@@ -18,7 +18,6 @@ public class StudentController {
     @GetMapping("/students")
     public String students(Model model) {
         model.addAttribute("students", business.getStudents());
-        log.info(business.getStudents().toString());
         return "students";
     }
 }

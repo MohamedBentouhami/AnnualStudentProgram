@@ -1,3 +1,17 @@
-.welcome-msg{
+.welcome-msg {
     margin: 4em 3em;
+    border: 6px solid;
+    border-radius: 12px;
+    padding: 1em;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7em;
+    font-size: 1.5em;
+    text-shadow: white 1px 0 10px;
+}
+.welcome-subtitle{
+    text-align: center;
+    margin-bottom: 0.5em;
+    font-weight: bold;
 }

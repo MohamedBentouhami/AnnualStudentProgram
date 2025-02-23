@@ -47,7 +47,7 @@
         }
       }
 
-      a:hover {
+      a:hover, a:focus  {
         background-color: var(--secondary_color);
         color: white;
         border-radius: 12px;
