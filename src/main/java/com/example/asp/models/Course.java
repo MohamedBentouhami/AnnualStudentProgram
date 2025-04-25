@@ -1,4 +1,4 @@
-package com.example.asp.model;
+package com.example.asp.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -15,10 +15,11 @@ import lombok.NoArgsConstructor;
 public class Course {
 
     @Id
+    private Long id;
     @NotBlank(message = "Cannot be empty")
-    private String sigle;
+    private String code;
     @NotBlank(message = "Cannot be empty")
     private String title;
-    @Min(value = 0, message = "should be positive")
+    @Min(value = 0, message = "Should be positive")
     private int etc;
 }

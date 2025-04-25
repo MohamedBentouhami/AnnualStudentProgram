@@ -1,4 +1,4 @@
-package com.example.asp.model;
+package com.example.asp.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;

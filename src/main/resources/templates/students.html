@@ -27,6 +27,28 @@
         </tr>
       </tbody>
     </table>
+    <div class="student-form">
+      <h2>Add a student</h2>
+      <form th:action="@{/create-student}" th:object="${student}" method="post">
+        <div>
+          <label>Name: </label>
+          <input type="text" th:field="*{name}">
+          <span th:errors="*{name}" class="errorMsg">erreur</span>
+        </div>
+
+        <div>
+          <label>Gender: </label>
+          <input type="radio">Man
+          <input type="radio">Woman</div>
+        <div>
+          <label>Section: </label>
+          <input type="radio" name="" id="">Gestion
+          <input type="radio" name="" id="">Industrielle
+          <input type="radio" name="" id="">Reseau
+        </div>
+        <button type="submit" id="add-student-btn">Add</button>
+      </form>
+    </div>
   </div>
 </body>
 
