@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.example.asp.business.Asp;
+import com.example.asp.services.ProgramService;
 import com.example.asp.models.Student;
 
 import jakarta.validation.Valid;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Slf4j
 public class StudentController {
     @Autowired
-    private Asp business;
+    private ProgramService business;
 
     @GetMapping("/students")
     public String students(Model model) {
