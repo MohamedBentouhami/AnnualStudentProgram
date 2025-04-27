@@ -29,19 +29,14 @@ public class CourseController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Course> getCourse(@PathVariable(name = "code") Long id) {
+    public ResponseEntity<Course> getCourse(@PathVariable(name = "id") Long id) {
         var course = business.getCourse(id);
         return ResponseEntity.ok(course);
     }
 
     @PostMapping("/create-course")
-    public ResponseEntity<Course> createCourse(
-            @Valid @RequestBody CreationCourseRequest course,
-            Errors errors, UriComponentsBuilder uriBuilder) {
-
-        if (errors.hasErrors()) {
-            return ResponseEntity.badRequest().build();
-        }
+    public ResponseEntity<?> createCourse(
+            @Valid @RequestBody CreationCourseRequest course, UriComponentsBuilder uriBuilder) {
         Course newCourse = business.addCourse(course);
         var uri = uriBuilder.path("/api/courses/{id}").buildAndExpand(newCourse.getId()).toUri();
         return ResponseEntity.created(uri).body(newCourse);

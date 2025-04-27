@@ -9,10 +9,10 @@ import lombok.Data;
 @AllArgsConstructor
 public class CreationCourseRequest {
 
-    @NotBlank(message = "Cannot be empty")
+    @NotBlank(message = "code cannot be empty")
     private String code;
-    @NotBlank(message = "Cannot be empty")
+    @NotBlank(message = "title cannot be empty")
     private String title;
-    @Min(value = 0, message = "Should be positive")
+    @Min(value = 0, message = "etc should be positive")
     private int etc;
 }
