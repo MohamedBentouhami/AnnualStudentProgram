@@ -1,7 +1,10 @@
 package com.example.asp.controllers;
 
+import com.example.asp.dtos.StudentCreationRequest;
 import com.example.asp.dtos.StudentDto;
+import com.example.asp.exceptions.StudentNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +13,7 @@ import com.example.asp.services.ProgramService;
 import com.example.asp.models.Student;
 
 import jakarta.validation.Valid;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -21,18 +25,26 @@ public class StudentController {
     @Autowired
     private ProgramService business;
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<StudentDto> getAllStudents(Model model) {
         return business.getStudents();
     }
 
-    @PostMapping("/create-student")
-    public String createStudent(@Valid Student student, Errors erros, Model model) {
-        if (erros.hasErrors()) {
-            model.addAttribute("students", business.getStudents());
+    @GetMapping("/{id}")
+    public ResponseEntity<StudentDto> getStudent(@PathVariable Long id) {
+        if (!business.doesStudentExist(id)) {
+            throw new StudentNotFoundException(id);
         }
-        business.addStudent(student);
-        return "redirect:/students";
+        var student = business.getStudent(id);
+        return ResponseEntity.ok(student);
     }
+
+    @PostMapping("/create")
+    public ResponseEntity<Student> createStudent(@Valid @RequestBody StudentCreationRequest student, UriComponentsBuilder uriBuilder) {
+        Student newStudent = business.addStudent(student);
+        var uri = uriBuilder.path("/api/students/{id}").buildAndExpand(newStudent.getId()).toUri();
+        return ResponseEntity.created(uri).body(newStudent);
+    }
+
 
 }

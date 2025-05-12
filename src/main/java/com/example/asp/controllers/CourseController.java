@@ -24,7 +24,7 @@ public class CourseController {
     @Autowired
     private ProgramService business;
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<CourseDto> getAllCourses(Model model) {
         return business.getCourses();
     }
@@ -35,8 +35,8 @@ public class CourseController {
         return ResponseEntity.ok(course);
     }
 
-    @PostMapping("/create-course")
-    public ResponseEntity<?> createCourse(
+    @PostMapping("/create")
+    public ResponseEntity<Course> createCourse(
             @Valid @RequestBody CreationCourseRequest course, UriComponentsBuilder uriBuilder) {
         Course newCourse = business.addCourse(course);
         var uri = uriBuilder.path("/api/courses/{id}").buildAndExpand(newCourse.getId()).toUri();

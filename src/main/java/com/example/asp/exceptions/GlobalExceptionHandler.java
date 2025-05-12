@@ -12,13 +12,19 @@ import java.util.List;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ErrorBody> handleValidationExceptions(MethodArgumentNotValidException ex) {
+    public ResponseEntity<ErrorResponse> handleValidationExceptions(MethodArgumentNotValidException ex) {
         List<String> errors = ex.getBindingResult()
                 .getAllErrors()
                 .stream()
                 .map(err -> err.getDefaultMessage())
                 .toList();
-        ErrorBody errorBody = new ErrorBody(HttpStatus.BAD_REQUEST.value(), "Validation failed", errors);
+        ErrorResponse errorBody = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), "Validation failed", errors);
         return ResponseEntity.badRequest().body(errorBody);
+    }
+
+    @ExceptionHandler(StudentNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleStudentNotFound() {
+        ErrorResponse error = new ErrorResponse(404, "Student not found", null);
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 }

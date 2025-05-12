@@ -2,6 +2,7 @@ package com.example.asp.services;
 
 import com.example.asp.dtos.CourseDto;
 import com.example.asp.dtos.CreationCourseRequest;
+import com.example.asp.dtos.StudentCreationRequest;
 import com.example.asp.dtos.StudentDto;
 import com.example.asp.mappers.CourseMapper;
 import com.example.asp.mappers.StudentMapper;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @Service
 public class ProgramService {
+
     @Autowired
     private CourseDB courseDB;
     @Autowired
@@ -44,7 +46,14 @@ public class ProgramService {
         return studentDB.findAll().stream().map(studentMapper::toDto).toList();
     }
 
-    public Student addStudent(Student student) {
-        return studentDB.save(student);
+    public StudentDto getStudent(Long id) {
+        return studentMapper.toDto(studentDB.findById(id).orElse(null));
+    }
+
+    public Student addStudent(StudentCreationRequest student) {
+        return studentDB.save(studentMapper.toEntity(student));
+    }
+    public boolean doesStudentExist(Long id){
+        return studentDB.existsById(id);
     }
 }

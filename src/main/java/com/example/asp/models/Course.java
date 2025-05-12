@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -18,4 +20,6 @@ public class Course {
     private String code;
     private String title;
     private int etc;
+    @ManyToMany(mappedBy = "students")
+    private List<Student> students;
 }

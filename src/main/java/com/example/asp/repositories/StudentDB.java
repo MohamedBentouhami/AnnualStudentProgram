@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.example.asp.models.Student;
 
-public interface StudentDB extends JpaRepository<Student, Integer> {
+public interface StudentDB extends JpaRepository<Student, Long> {
 
 }

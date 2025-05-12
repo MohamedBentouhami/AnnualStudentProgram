@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class ErrorBody {
+public class ErrorResponse {
     private int status;
     private String message;
     private List<String> errors;
