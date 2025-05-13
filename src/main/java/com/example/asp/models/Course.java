@@ -20,6 +20,6 @@ public class Course {
     private String code;
     private String title;
     private int etc;
-    @ManyToMany(mappedBy = "students")
+    @ManyToMany(mappedBy = "courses")
     private List<Student> students;
 }
