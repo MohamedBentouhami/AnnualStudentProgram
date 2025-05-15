@@ -1,5 +1,6 @@
 package com.example.asp.controllers;
 
+import com.example.asp.dtos.CourseDto;
 import com.example.asp.dtos.StudentCreationRequest;
 import com.example.asp.dtos.StudentDto;
 import com.example.asp.exceptions.StudentNotFoundException;
@@ -44,6 +45,12 @@ public class StudentController {
         Student newStudent = business.addStudent(student);
         var uri = uriBuilder.path("/api/students/{id}").buildAndExpand(newStudent.getId()).toUri();
         return ResponseEntity.created(uri).body(newStudent);
+    }
+
+    @GetMapping("{student_id}/courses")
+    public ResponseEntity<List<CourseDto>> getCoursesByStudent(@PathVariable(name = "student_id") Long studentId) {
+        var courses = business.getCoursesByStudent(studentId);
+        return ResponseEntity.ok(courses);
     }
 
 

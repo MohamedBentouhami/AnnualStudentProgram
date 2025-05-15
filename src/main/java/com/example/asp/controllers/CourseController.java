@@ -2,11 +2,12 @@ package com.example.asp.controllers;
 
 import com.example.asp.dtos.CourseDto;
 import com.example.asp.dtos.CreationCourseRequest;
+import com.example.asp.dtos.StudentDto;
+import com.example.asp.models.Student;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.asp.services.ProgramService;
@@ -41,5 +42,11 @@ public class CourseController {
         Course newCourse = business.addCourse(course);
         var uri = uriBuilder.path("/api/courses/{id}").buildAndExpand(newCourse.getId()).toUri();
         return ResponseEntity.created(uri).body(newCourse);
+    }
+
+    @GetMapping("/{course_id}/students")
+    public ResponseEntity<List<StudentDto>> getStudentsByCourse(@PathVariable(name = "course_id") Long courseId) {
+        List<StudentDto> students = business.getStudentsByCourse(courseId);
+        return ResponseEntity.ok(students);
     }
 }

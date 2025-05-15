@@ -53,7 +53,18 @@ public class ProgramService {
     public Student addStudent(StudentCreationRequest student) {
         return studentDB.save(studentMapper.toEntity(student));
     }
-    public boolean doesStudentExist(Long id){
+
+    public boolean doesStudentExist(Long id) {
         return studentDB.existsById(id);
+    }
+
+    public List<StudentDto> getStudentsByCourse(Long courseId) {
+        var course = getCourse(courseId);
+        return course.getStudents().stream().map(studentMapper::toDto).toList();
+    }
+
+    public List<CourseDto> getCoursesByStudent(Long studentId) {
+        Student student = studentDB.findById(studentId).orElse(null);
+        return student.getCourses().stream().map(courseMapper::toDto).toList();
     }
 }
