@@ -51,7 +51,8 @@ public class CourseController {
         return ResponseEntity.ok(students);
     }
     @PatchMapping("add-student")
-    public ResponseEntity<Void> addStudentToCourse(@Valid @RequestBody StudentCourseIds studentCourseIds){
+    public ResponseEntity<String> addStudentToCourse(@Valid @RequestBody StudentCourseIds studentCourseIds){
         business.addStudentToACourse(studentCourseIds);
+        return ResponseEntity.ok("Student added successfully");
     }
 }

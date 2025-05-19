@@ -9,6 +9,6 @@ import lombok.Data;
 public class StudentCourseIds {
     @NotNull(message = "Should not be null")
     private Long studentId;
-    @NotNull(message = "Should not be bull")
+    @NotNull(message = "Should not be null")
     private Long courseId;
 }
