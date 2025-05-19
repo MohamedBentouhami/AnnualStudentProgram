@@ -1,9 +1,8 @@
 package com.example.asp.services;
 
-import com.example.asp.dtos.CourseDto;
-import com.example.asp.dtos.CreationCourseRequest;
-import com.example.asp.dtos.StudentCreationRequest;
-import com.example.asp.dtos.StudentDto;
+import com.example.asp.dtos.*;
+import com.example.asp.exceptions.GenericError;
+import com.example.asp.exceptions.StudentNotFoundException;
 import com.example.asp.mappers.CourseMapper;
 import com.example.asp.mappers.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,5 +65,21 @@ public class ProgramService {
     public List<CourseDto> getCoursesByStudent(Long studentId) {
         Student student = studentDB.findById(studentId).orElse(null);
         return student.getCourses().stream().map(courseMapper::toDto).toList();
+    }
+
+    public void addStudentToACourse(StudentCourseIds studentCourseIds) {
+        Student student = studentDB.findById(studentCourseIds.getStudentId())
+                .orElseThrow(() -> new StudentNotFoundException(studentCourseIds.getStudentId()));
+        Course course = courseDB.findById(studentCourseIds.getCourseId())
+                .orElseThrow(() -> new GenericError(404, "Course not found"));
+
+        if (!isAlreadySubscribed(student, course)) {
+            student.getCourses().add(course);
+            studentDB.save(student);
+        }
+    }
+
+    private boolean isAlreadySubscribed(Student student, Course course) {
+        return student.getCourses().stream().anyMatch(c -> c.getId().equals(course.getId()));
     }
 }

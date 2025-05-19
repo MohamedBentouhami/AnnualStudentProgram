@@ -2,6 +2,7 @@ package com.example.asp.controllers;
 
 import com.example.asp.dtos.CourseDto;
 import com.example.asp.dtos.CreationCourseRequest;
+import com.example.asp.dtos.StudentCourseIds;
 import com.example.asp.dtos.StudentDto;
 import com.example.asp.models.Student;
 import jakarta.validation.Valid;
@@ -48,5 +49,9 @@ public class CourseController {
     public ResponseEntity<List<StudentDto>> getStudentsByCourse(@PathVariable(name = "course_id") Long courseId) {
         List<StudentDto> students = business.getStudentsByCourse(courseId);
         return ResponseEntity.ok(students);
+    }
+    @PatchMapping("add-student")
+    public ResponseEntity<Void> addStudentToCourse(@Valid @RequestBody StudentCourseIds studentCourseIds){
+        business.addStudentToACourse(studentCourseIds);
     }
 }
