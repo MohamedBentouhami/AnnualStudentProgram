@@ -1,5 +1,6 @@
 package com.example.asp.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class Course {
     private String code;
     private String title;
     private int etc;
+    @JsonManagedReference
     @ManyToMany(mappedBy = "courses")
     private List<Student> students;
 }

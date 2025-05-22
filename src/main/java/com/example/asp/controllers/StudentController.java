@@ -53,5 +53,11 @@ public class StudentController {
         return ResponseEntity.ok(courses);
     }
 
+    @GetMapping("/not-subscribed/{course-id}")
+    public ResponseEntity<List<StudentDto>> getStudentsNotSubscribed(@PathVariable(name = "course-id") Long courseId) {
+        var students = business.getStudentsNotSubscribed(courseId);
+        return ResponseEntity.ok(students);
+    }
+
 
 }

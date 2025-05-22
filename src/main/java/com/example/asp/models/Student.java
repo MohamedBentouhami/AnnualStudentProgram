@@ -1,5 +1,6 @@
 package com.example.asp.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,7 +25,8 @@ public class Student {
     private Gender gender;
     @Enumerated(EnumType.STRING)
     private Section section;
-    @ManyToMany()
+    @JsonBackReference
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Course> courses;
 
 }

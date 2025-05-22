@@ -82,4 +82,9 @@ public class ProgramService {
     private boolean isAlreadySubscribed(Student student, Course course) {
         return student.getCourses().stream().anyMatch(c -> c.getId().equals(course.getId()));
     }
+
+    public List<StudentDto> getStudentsNotSubscribed(Long courseId) {
+        var students = studentDB.findStudentNotSubscribed(courseId);
+        return students.stream().map(studentMapper::toDto).toList();
+    }
 }
