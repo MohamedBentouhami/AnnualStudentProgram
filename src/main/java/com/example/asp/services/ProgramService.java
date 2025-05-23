@@ -67,7 +67,7 @@ public class ProgramService {
         return student.getCourses().stream().map(courseMapper::toDto).toList();
     }
 
-    public void addStudentToACourse(StudentCourseIds studentCourseIds) {
+    public void enrollStudent(StudentCourseIds studentCourseIds) {
         Student student = studentDB.findById(studentCourseIds.getStudentId())
                 .orElseThrow(() -> new StudentNotFoundException(studentCourseIds.getStudentId()));
         Course course = courseDB.findById(studentCourseIds.getCourseId())
@@ -86,5 +86,10 @@ public class ProgramService {
     public List<StudentDto> getStudentsNotSubscribed(Long courseId) {
         var students = studentDB.findStudentNotSubscribed(courseId);
         return students.stream().map(studentMapper::toDto).toList();
+    }
+
+    public List<CourseDto> getCoursesNotEnrolled(Long studentId) {
+        var students = courseDB.getNotEnrolledCourses(studentId);
+        return students.stream().map(courseMapper::toDto).toList();
     }
 }

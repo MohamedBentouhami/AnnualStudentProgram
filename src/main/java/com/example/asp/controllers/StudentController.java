@@ -1,13 +1,13 @@
 package com.example.asp.controllers;
 
 import com.example.asp.dtos.CourseDto;
+import com.example.asp.dtos.StudentCourseIds;
 import com.example.asp.dtos.StudentCreationRequest;
 import com.example.asp.dtos.StudentDto;
 import com.example.asp.exceptions.StudentNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.asp.services.ProgramService;
@@ -59,5 +59,10 @@ public class StudentController {
         return ResponseEntity.ok(students);
     }
 
+    @PatchMapping("add-course")
+    public ResponseEntity<String> registerStudentInCourse(@Valid @RequestBody StudentCourseIds studentCourseIds) {
+        business.enrollStudent(studentCourseIds);
+        return ResponseEntity.ok("Enroll to the given course successfully");
+    }
 
 }
